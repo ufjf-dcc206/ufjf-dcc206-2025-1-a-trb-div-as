@@ -82,14 +82,45 @@ const baralho: Cartas[] = [
   { nome: "K", naipe: "ouros", pontos: 10 },
 ];
 
+let mao: Cartas[] = [];
+let indiceCarta;
+
+//função para embaralhar o baralho
+function embaralharBaralho(baralho: Cartas[]): Cartas[] {
+  const baralhoEmbaralhado = [...baralho];
+  for (let i = baralhoEmbaralhado.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [baralhoEmbaralhado[i], baralhoEmbaralhado[j]] = [
+      baralhoEmbaralhado[j],
+      baralhoEmbaralhado[i],
+    ];
+  }
+  return baralhoEmbaralhado;
+}
+
+//função para separar a mão inicial
+function maoInicial(baralho: Cartas[]) {
+  const baralhoEmbaralhado = embaralharBaralho(baralho);
+  mao = [];
+  for (let i = 0; i < 8; i++) {
+    mao.push(baralhoEmbaralhado[i]);
+  }
+}
+
 //função para iniciar o jogo
-function iniciarJogo(telaInicial: HTMLDivElement, telaJogo: HTMLDivElement) {
+function iniciarJogo(
+  telaInicial: HTMLDivElement,
+  telaJogo: HTMLDivElement,
+  baralho: Cartas[]
+) {
   telaInicial.style.display = "none"; //tira a tela inicial
   telaJogo.style.display = "block"; //inicia a tela do jogo
-};
+  maoInicial(baralho);
+  console.log(mao);
+}
 
 botaoJogar.addEventListener("click", () => {
-  iniciarJogo(telaInicial, telaJogo);
+  iniciarJogo(telaInicial, telaJogo, baralho);
 });
 
 botaoTutorial.addEventListener("click", () => {});
