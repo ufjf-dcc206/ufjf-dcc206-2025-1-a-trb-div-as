@@ -92,6 +92,18 @@ function renderizarMão() {
     cartaUnica.appendChild(nomeCarta);
     cartaUnica.appendChild(iconeNaipe);
 
+    //seleção das cartas
+    cartaUnica.addEventListener("click", () => {
+      if (cartaUnica.classList.contains("selecionada")) {
+        cartaUnica.classList.remove("selecionada");
+      } else {
+        const selecionadas = document.querySelectorAll(".carta.selecionada");
+        if (selecionadas.length < 5) {
+          cartaUnica.classList.add("selecionada");
+        } 
+      }
+    });
+
     //adiciona "cartaUnica" no "cartasNaMao"
     cartasNaMao.appendChild(cartaUnica);
   });
