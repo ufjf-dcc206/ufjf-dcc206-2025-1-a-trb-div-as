@@ -44,7 +44,6 @@ body {
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: 20px;
   left: 40px;
   z-index: 10;
   top: 50%;
@@ -60,6 +59,18 @@ body {
   font-weight: bold;
   color: #000;
   margin-bottom: 10px;
+}
+
+#baralho {
+  width: 170px;
+  height: 250px;
+  border-radius: 10px;
+  display: flex;
+  position: absolute;
+  right: 80px;
+  z-index: 10;
+  top: 48%;
+  transform: translateY(-70%);
 }
 
 #botoesJogo {
@@ -93,7 +104,7 @@ body {
 
 .carta {
   width: 60px;
-  height: 90px;
+  height: 100px;
   border: 1px solid #333;
   border-radius: 8px;
   display: flex;
@@ -123,7 +134,7 @@ body {
 }
 
 .naipeVermelho {
-  color: red;
+  color: #ff0000;
 }
 
 .naipePreto {

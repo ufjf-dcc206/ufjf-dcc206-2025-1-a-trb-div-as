@@ -3,12 +3,8 @@ import "./style.css";
 //botões
 const botaoJogar = document.getElementById("bJogar") as HTMLButtonElement;
 const botaoTutorial = document.getElementById("bTutorial") as HTMLButtonElement;
-const botaoJogarCartas = document.getElementById(
-  "bJogarCartas"
-) as HTMLButtonElement;
-const botaoDescartarCartas = document.getElementById(
-  "bDescartarCartas"
-) as HTMLButtonElement;
+const botaoJogarCartas = document.getElementById("bJogarCartas") as HTMLButtonElement;
+const botaoDescartarCartas = document.getElementById("bDescartarCartas") as HTMLButtonElement;
 
 //tela inicial e tela jogo
 const telaInicial = document.getElementById("telaInicial") as HTMLDivElement;
