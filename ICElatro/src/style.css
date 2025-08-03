@@ -41,10 +41,14 @@ body {
 }
 
 #pontuação {
+  display: flex;
+  flex-direction: column;
   position: absolute;
   top: 20px;
   left: 40px;
   z-index: 10;
+  top: 50%;
+  transform: translateY(-80%);
 }
 
 #pontuação > div {
@@ -56,6 +60,35 @@ body {
   font-weight: bold;
   color: #000;
   margin-bottom: 10px;
+}
+
+#botoesJogo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+  margin-bottom: -15px;
+}
+
+#bJogarCartas {
+  padding: 8px 16px;
+  background-color: #90e44c;
+  border: 1px solid #888;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #000;
+}
+
+#bDescartarCartas {
+  padding: 8px 16px;
+  background-color: #e4564c;
+  border: 1px solid #888;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #000;
 }
 
 .carta {

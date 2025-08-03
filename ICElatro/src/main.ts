@@ -3,6 +3,12 @@ import "./style.css";
 //botões
 const botaoJogar = document.getElementById("bJogar") as HTMLButtonElement;
 const botaoTutorial = document.getElementById("bTutorial") as HTMLButtonElement;
+const botaoJogarCartas = document.getElementById(
+  "bJogarCartas"
+) as HTMLButtonElement;
+const botaoDescartarCartas = document.getElementById(
+  "bDescartarCartas"
+) as HTMLButtonElement;
 
 //tela inicial e tela jogo
 const telaInicial = document.getElementById("telaInicial") as HTMLDivElement;
@@ -52,7 +58,7 @@ function maoInicial(baralho: Cartas[]) {
   }
 }
 
-//função para renderizar a mão na tela
+//função para renderizar a mão na tela e selecionar cartas
 function renderizarMão() {
   const cartasNaMao = document.getElementById("cartasNaMao") as HTMLDivElement; //"cartasNaMao" = a mão completa
   mao.forEach((carta) => {
@@ -100,7 +106,7 @@ function renderizarMão() {
         const selecionadas = document.querySelectorAll(".carta.selecionada");
         if (selecionadas.length < 5) {
           cartaUnica.classList.add("selecionada");
-        } 
+        }
       }
     });
 
@@ -127,3 +133,8 @@ botaoJogar.addEventListener("click", () => {
 });
 
 botaoTutorial.addEventListener("click", () => {});
+
+//ações dos botões "Jogar" e "Descartar" (dentro do jogo)
+botaoJogarCartas.addEventListener("click", () => {});
+
+botaoDescartarCartas.addEventListener("click", () => {});
