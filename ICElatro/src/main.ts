@@ -36,25 +36,36 @@ botaoTutorial.addEventListener("click", () => {});
 
 //ações dos botões "Jogar" e "Descartar" (dentro do jogo)
 botaoJogarCartas.addEventListener("click", () => {
+
+  //busca todos elementos que foram selecionadas
   const cartasSelecionadas = document.querySelectorAll(".carta.selecionada");
+
+  //verifica se tem pelo menos uma carta selecionada
   if (cartasSelecionadas.length === 0) {
     console.log("Nenhuma carta foi selecionada");
     return;
   }
+
   const cartasJogadas: Cartas[] = [];
 
+  //para cada carta selecionada, atribui o nome e o simbolo
   cartasSelecionadas.forEach((elementoCarta) => {
-    const nomeCartaElemento = elementoCarta.querySelector(".nomeCarta");
-    const iconeNaipeElemento = elementoCarta.querySelector(".iconeNaipe");
 
-    if (!nomeCartaElemento || !iconeNaipeElemento) {
+    //busca os elementos HTML
+    const nomeCartaElemento = elementoCarta.querySelector(".nomeCarta");
+    const simboloNaipeElemento = elementoCarta.querySelector(".iconeNaipe");
+
+    //verifica se existe o elemento
+    if (!nomeCartaElemento || !simboloNaipeElemento) {
       console.error("Não foi possível encontrar o nome ou naipe da carta.");
       return;
     }
 
+    //atribui nome e icone 
     const nomeCarta = nomeCartaElemento.textContent;
-    const iconeNaipe = iconeNaipeElemento.textContent;
+    const iconeNaipe = simboloNaipeElemento.textContent;
 
+    //"traduz" os simbolos em nomes 
     let naipe = "";
     switch (iconeNaipe) {
       case "♥":
@@ -70,13 +81,18 @@ botaoJogarCartas.addEventListener("click", () => {
         naipe = "paus";
         break;
     }
+
+    //atribui minha primeira ocorrencia 
     const cartaEncontrada = mao.find(
-      (c) => String(c.nome) === nomeCarta && c.naipe === naipe
+      (cartaJ) => String(cartaJ.nome) === nomeCarta && cartaJ.naipe === naipe
     );
+
+    //se a carta existir, é adicionada ao vetor 
     if (cartaEncontrada) {
       cartasJogadas.push(cartaEncontrada);
     }
   });
+  
   console.log("Cartas jogadas:", cartasJogadas);
 });
 
