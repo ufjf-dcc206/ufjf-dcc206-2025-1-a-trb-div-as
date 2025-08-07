@@ -4,12 +4,15 @@ import { embaralharBaralho } from "./baralho";
 //criação da mão
 export let mao: Cartas[] = [];
 
+//variável para gerenciar o baralho sendo usado no jogo
+let indiceBaralho;
+
 //função para separar a mão inicial
 export function maoInicial(baralho: Cartas[]) {
   const baralhoEmbaralhado = embaralharBaralho(baralho);
   mao = [];
-  for (let i = 0; i < 8; i++) {
-    mao.push(baralhoEmbaralhado[i]);
+  for (indiceBaralho = 0; indiceBaralho < 8; indiceBaralho++) {
+    mao.push(baralhoEmbaralhado[indiceBaralho]);
   }
 }
 
