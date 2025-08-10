@@ -1,7 +1,6 @@
 import "./style.css";
 import { type Cartas } from "./tipos";
-import { baralho } from "./baralho";
-import { mao, maoInicial, renderizarMão, indicesSelecionados } from "./mao";
+import { mao, maoInicial, renderizarMão, indicesSelecionados, descartarCartas } from "./mao";
 
 //tela inicial e tela jogo
 export const telaInicial = document.getElementById("telaInicial") as HTMLDivElement;
@@ -15,21 +14,23 @@ export const botaoTutorial = document.getElementById("bTutorial") as HTMLButtonE
 const botaoJogarCartas = document.getElementById("bJogarCartas") as HTMLButtonElement;
 const botaoDescartarCartas = document.getElementById("bDescartarCartas") as HTMLButtonElement;
 
+//armazena as cartas jogadas
+export const cartasJogadas: Cartas[] = [];
+
 //função para iniciar o jogo
 export function iniciarJogo(
   telaInicial: HTMLDivElement,
   telaJogo: HTMLDivElement,
-  baralho: Cartas[]
 ) {
   telaInicial.style.display = "none"; //tira a tela inicial
   telaJogo.style.display = "block"; //inicia a tela do jogo
-  maoInicial(baralho);
+  maoInicial();
   renderizarMão();
 }
 
 //ações dos botões "Jogar" e "Tutorial" (dentro da tela inicial)
 botaoJogar.addEventListener("click", () => {
-  iniciarJogo(telaInicial, telaJogo, baralho);
+  iniciarJogo(telaInicial, telaJogo);
 });
 
 botaoTutorial.addEventListener("click", () => {});
@@ -46,8 +47,6 @@ botaoJogarCartas.addEventListener("click", () => {
     return;
   }
 
-  const cartasJogadas: Cartas[] = [];
-
   //para cada carta selecionada, atribui o nome e o simbolo
   cartasSelecionadas.forEach((elementoCarta) => {
 
@@ -61,11 +60,11 @@ botaoJogarCartas.addEventListener("click", () => {
       return;
     }
 
-    //atribui nome e icone 
+    //atribui nome e ícone 
     const nomeCarta = nomeCartaElemento.textContent;
     const iconeNaipe = simboloNaipeElemento.textContent;
 
-    //"traduz" os simbolos em nomes 
+    //"traduz" os símbolos em nomes 
     let naipe = "";
     switch (iconeNaipe) {
       case "♥":
@@ -82,7 +81,7 @@ botaoJogarCartas.addEventListener("click", () => {
         break;
     }
 
-    //atribui minha primeira ocorrencia 
+    //atribui a primeira ocorrência 
     const cartaEncontrada = mao.find(
       (cartaJ) => String(cartaJ.nome) === nomeCarta && cartaJ.naipe === naipe
     );
@@ -97,4 +96,6 @@ botaoJogarCartas.addEventListener("click", () => {
   console.log(indicesSelecionados);
 });
 
-botaoDescartarCartas.addEventListener("click", () => {});
+botaoDescartarCartas.addEventListener("click", () => {
+  descartarCartas();
+});

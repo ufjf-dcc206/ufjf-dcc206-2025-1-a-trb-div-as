@@ -1,18 +1,18 @@
 import { type Cartas } from "./tipos";
-import { embaralharBaralho } from "./baralho";
+import { embaralharBaralho, baralhoEmbaralhado, baralho } from "./baralho";
 
 //criação da mão
 export let mao: Cartas[] = [];
 
 //variável para gerenciar o baralho sendo usado no jogo
-let indiceBaralho;
+export let indiceBaralho: number;
 
 //variável para gerenciar os índices das cartas selecionadas
 export let indicesSelecionados: number[] = [];
 
 //função para separar a mão inicial
-export function maoInicial(baralho: Cartas[]) {
-  const baralhoEmbaralhado = embaralharBaralho(baralho);
+export function maoInicial() {
+  embaralharBaralho(baralho);
   mao = [];
   for (indiceBaralho = 0; indiceBaralho < 8; indiceBaralho++) {
     mao.push(baralhoEmbaralhado[indiceBaralho]);
@@ -22,6 +22,10 @@ export function maoInicial(baralho: Cartas[]) {
 //função para renderizar a mão na tela e selecionar cartas
 export function renderizarMão() {
   const cartasNaMao = document.getElementById("cartasNaMao") as HTMLDivElement; //"cartasNaMao" = a mão completa
+
+  //limpa a mão
+  cartasNaMao.innerHTML = "";
+
   mao.forEach((carta, indice) => {
     const cartaUnica = document.createElement("div"); //"cartaUnica" = carta individual
     cartaUnica.classList.add("carta");
@@ -63,7 +67,7 @@ export function renderizarMão() {
     cartaUnica.addEventListener("click", () => {
       if (cartaUnica.classList.contains("selecionada")) {
         cartaUnica.classList.remove("selecionada");
-        indicesSelecionados = indicesSelecionados.filter(i => i !== indice);
+        indicesSelecionados = indicesSelecionados.filter((i) => i !== indice);
       } else {
         const selecionadas = document.querySelectorAll(".carta.selecionada");
         if (selecionadas.length < 5) {
@@ -76,4 +80,14 @@ export function renderizarMão() {
     //adiciona "cartaUnica" no "cartasNaMao"
     cartasNaMao.appendChild(cartaUnica);
   });
+}
+
+//função para descartar cartas e atualizar "indiceBaralho"
+export function descartarCartas() {
+  for (let i = 0; i < indicesSelecionados.length; i++) {
+    let j = indicesSelecionados[i];
+    mao[j] = baralhoEmbaralhado[indiceBaralho];
+    indiceBaralho++;
+  }
+  renderizarMão();
 }

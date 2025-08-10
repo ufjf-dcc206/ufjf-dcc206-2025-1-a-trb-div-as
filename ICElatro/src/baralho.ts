@@ -12,9 +12,12 @@ export const baralho: Cartas[] = [];
   baralho.push({ nome: "A", naipe: n, pontos: 15 });
 });
 
+//baralho usado no jogo
+export let baralhoEmbaralhado: Cartas[] = [];
+
 //função para embaralhar o baralho
 export function embaralharBaralho(baralho: Cartas[]): Cartas[] {
-  const baralhoEmbaralhado = [...baralho];
+  baralhoEmbaralhado = [...baralho];
   for (let i = baralhoEmbaralhado.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [baralhoEmbaralhado[i], baralhoEmbaralhado[j]] = [
