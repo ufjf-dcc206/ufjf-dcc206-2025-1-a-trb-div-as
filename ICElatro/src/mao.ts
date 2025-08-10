@@ -89,8 +89,9 @@ export function descartarCartas() {
     mao[j] = baralhoEmbaralhado[indiceBaralho];
     indiceBaralho++;
 
-    if(indiceBaralho === 51)
-      indiceBaralho = 0;
+    if (indiceBaralho === 51) indiceBaralho = 0;
+
+    indicesSelecionados = [];
   }
   renderizarMão();
 }

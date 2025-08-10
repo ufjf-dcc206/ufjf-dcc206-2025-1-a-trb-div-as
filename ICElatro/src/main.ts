@@ -7,6 +7,7 @@ import {
   indicesSelecionados,
   descartarCartas,
 } from "./mao";
+import { baralho, embaralharBaralho } from "./baralho";
 
 //tela inicial e tela jogo
 export const telaInicial = document.getElementById(
@@ -49,7 +50,7 @@ export function iniciarJogo(
 }
 
 function verificaReiniciarJogo() {
-  if(verificaJogadas >= 4 && verificaDescartes >= 3){
+  if (verificaJogadas >= 4 && verificaDescartes >= 3) {
     verificaJogadas = 0;
     verificaDescartes = 0;
     reiniciarJogo();
@@ -57,6 +58,7 @@ function verificaReiniciarJogo() {
 }
 
 function reiniciarJogo() {
+  embaralharBaralho(baralho);
   maoInicial();
   renderizarMão();
 }
@@ -70,7 +72,6 @@ botaoTutorial.addEventListener("click", () => {});
 
 //ações dos botões "Jogar" e "Descartar" (dentro do jogo)
 botaoJogarCartas.addEventListener("click", () => {
-
   //verifica se o jogador já atingiu o limite de jogadas
   if (verificaJogadas >= 4) {
     console.log("Você já jogou o número máximo de vezes.");
@@ -142,7 +143,6 @@ botaoJogarCartas.addEventListener("click", () => {
 });
 
 botaoDescartarCartas.addEventListener("click", () => {
-
   //verifica se o jogador já atingiu o limite de descartes
   if (verificaDescartes >= 3) {
     console.log("Você já descartou o número máximo de vezes.");
