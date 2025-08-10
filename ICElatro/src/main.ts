@@ -1,7 +1,7 @@
 import "./style.css";
 import { type Cartas } from "./tipos";
 import { baralho } from "./baralho";
-import { mao, maoInicial, renderizarMão } from "./mao";
+import { mao, maoInicial, renderizarMão, indicesSelecionados } from "./mao";
 
 //tela inicial e tela jogo
 export const telaInicial = document.getElementById("telaInicial") as HTMLDivElement;
@@ -94,6 +94,7 @@ botaoJogarCartas.addEventListener("click", () => {
   });
   
   console.log("Cartas jogadas:", cartasJogadas);
+  console.log(indicesSelecionados);
 });
 
 botaoDescartarCartas.addEventListener("click", () => {});

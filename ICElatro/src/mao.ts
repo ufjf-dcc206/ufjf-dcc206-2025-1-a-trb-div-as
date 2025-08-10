@@ -7,6 +7,9 @@ export let mao: Cartas[] = [];
 //variável para gerenciar o baralho sendo usado no jogo
 let indiceBaralho;
 
+//variável para gerenciar os índices das cartas selecionadas
+export let indicesSelecionados: number[] = [];
+
 //função para separar a mão inicial
 export function maoInicial(baralho: Cartas[]) {
   const baralhoEmbaralhado = embaralharBaralho(baralho);
@@ -19,7 +22,7 @@ export function maoInicial(baralho: Cartas[]) {
 //função para renderizar a mão na tela e selecionar cartas
 export function renderizarMão() {
   const cartasNaMao = document.getElementById("cartasNaMao") as HTMLDivElement; //"cartasNaMao" = a mão completa
-  mao.forEach((carta) => {
+  mao.forEach((carta, indice) => {
     const cartaUnica = document.createElement("div"); //"cartaUnica" = carta individual
     cartaUnica.classList.add("carta");
 
@@ -56,14 +59,16 @@ export function renderizarMão() {
     cartaUnica.appendChild(nomeCarta);
     cartaUnica.appendChild(iconeNaipe);
 
-    //seleção das cartas
+    //faz seleção das cartas e preenche o vetor "indicesSelecionados"
     cartaUnica.addEventListener("click", () => {
       if (cartaUnica.classList.contains("selecionada")) {
         cartaUnica.classList.remove("selecionada");
+        indicesSelecionados = indicesSelecionados.filter(i => i !== indice);
       } else {
         const selecionadas = document.querySelectorAll(".carta.selecionada");
         if (selecionadas.length < 5) {
           cartaUnica.classList.add("selecionada");
+          indicesSelecionados.push(indice);
         }
       }
     });
