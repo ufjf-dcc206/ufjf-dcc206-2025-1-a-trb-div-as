@@ -37,3 +37,11 @@ function maiorCarta(): void {
   raridade = 1;
   total = pontos * raridade;
 }
+
+function calculaPontos(): number {
+  let soma = 0;
+  for (let i = 0; i < cartasJogadas.length; i++) {
+    soma += cartasJogadas[i].pontos;
+  }
+  return soma;
+}
