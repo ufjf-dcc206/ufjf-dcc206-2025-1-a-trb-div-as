@@ -1,5 +1,6 @@
 import "./style.css";
 import { type Cartas } from "./tipos";
+
 import {
   mao,
   maoInicial,
