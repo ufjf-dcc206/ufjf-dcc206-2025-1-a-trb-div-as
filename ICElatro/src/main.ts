@@ -9,6 +9,7 @@ import {
   descartarCartas,
 } from "./mao";
 import { baralho, embaralharBaralho } from "./baralho";
+import { verificaCombinacoes } from "./jogo";
 
 //tela inicial e tela jogo
 export const telaInicial = document.getElementById(
@@ -33,7 +34,7 @@ const botaoDescartarCartas = document.getElementById(
 ) as HTMLButtonElement;
 
 //armazena as cartas jogadas
-export const cartasJogadas: Cartas[] = [];
+export let cartasJogadas: Cartas[] = [];
 
 //variáveis para gerenciar quantas vezes o jogador já jogou ou descartou as cartas
 let verificaJogadas = 0;
@@ -73,6 +74,10 @@ botaoTutorial.addEventListener("click", () => {});
 
 //ações dos botões "Jogar" e "Descartar" (dentro do jogo)
 botaoJogarCartas.addEventListener("click", () => {
+
+  //limpa o vetor de cartasJogadas
+  cartasJogadas = [];
+
   //verifica se o jogador já atingiu o limite de jogadas
   if (verificaJogadas >= 4) {
     console.log("Você já jogou o número máximo de vezes.");
@@ -136,6 +141,8 @@ botaoJogarCartas.addEventListener("click", () => {
 
   console.log("Cartas jogadas:", cartasJogadas);
   console.log(indicesSelecionados);
+
+  verificaCombinacoes();
 
   verificaReiniciarJogo();
 
