@@ -8,23 +8,69 @@ export function verificaCombinacoes() {
   if (cartasJogadas.length < 5) {
     maiorCarta();
     return;
-  } else if (quadra()) {
-  } else if (fullHouse()) {
-  } else if (flush()) {
-  } else if (trinca()) {
-  } else if (duplas()) {
-  } else {
+  }
+  else if (quadra()) {
+    pontos = calculaPontos();
+    raridade = 6;
+    total = pontos * raridade;
+  } 
+  else if (fullHouse()) {
+
+  } 
+  else if (flush()) {
+
+  } 
+  else if (trinca()) {
+    pontos = calculaPontos();
+    raridade = 3;
+    total = pontos * raridade;
+  } 
+  else if (duplas()) {
+
+  } 
+  else {
     maiorCarta();
   }
 }
 
-function quadra() {}
+function quadra(): boolean {
+  for (let i = 0; i < 5; i++) {
+    let cont = 0;
+
+    for (let j = 0; j < 5; j++) {
+      if (cartasJogadas[i].nome === cartasJogadas[j].nome) {
+        cont++;
+      }
+    }
+
+    if (cont === 4) {
+      return true;
+    }
+  }
+  return false;
+}
 
 function fullHouse() {}
 
 function flush() {}
 
-function trinca() {}
+function trinca(): boolean {
+  for (let i = 0; i < 5; i++) {
+    let cont = 0;
+
+    for (let j = 0; j < 5; j++) {
+      if (cartasJogadas[i].nome === cartasJogadas[j].nome) {
+        cont++;
+      }
+    }
+
+    if (cont === 3) {
+      return true;
+    }
+  }
+
+  return false;
+}
 
 function duplas() {}
 
