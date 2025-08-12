@@ -1,5 +1,6 @@
 import "./style.css";
 import { type Cartas } from "./tipos";
+import { verificaCombinacoes } from "./jogo";
 
 import {
   mao,
@@ -8,8 +9,9 @@ import {
   indicesSelecionados,
   descartarCartas,
 } from "./mao";
+
 import { baralho, embaralharBaralho } from "./baralho";
-import { verificaCombinacoes } from "./jogo";
+import { Status } from "./status";
 
 //tela inicial e tela jogo
 export const telaInicial = document.getElementById(
@@ -39,6 +41,9 @@ export let cartasJogadas: Cartas[] = [];
 //variáveis para gerenciar quantas vezes o jogador já jogou ou descartou as cartas
 let verificaJogadas = 0;
 let verificaDescartes = 0;
+
+//registra o componente de status
+Status.define();
 
 //função para iniciar o jogo
 export function iniciarJogo(
@@ -142,7 +147,23 @@ botaoJogarCartas.addEventListener("click", () => {
   console.log("Cartas jogadas:", cartasJogadas);
   console.log(indicesSelecionados);
 
-  verificaCombinacoes();
+  //resultado da combinação
+  const resultado = verificaCombinacoes();
+  
+  //busca o componente de status na pagina
+  const statusComponente = document.querySelector("status-display") as Status;
+
+  //verifica se o componente existe e chama o método pra atualizar a pontuação
+  if (statusComponente && resultado) {
+    // Definie a pontuação necessária como 100
+    const pontuacaoNecessaria = 100; 
+    statusComponente.atualizaStatus(
+      pontuacaoNecessaria,
+      resultado.total,
+      resultado.pontos,
+      resultado.raridade
+    );
+  }
 
   verificaReiniciarJogo();
 
