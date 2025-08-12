@@ -167,15 +167,28 @@ botaoJogarCartas.addEventListener("click", () => {
 
   //se conseguir ganhar, reinicia dobrando a pontuação necessária
   if (pontosRestantes <= 0) {
-    alert("Você venceu essa rodada! Iniciando nova rodada com desafio maior.");
     pontuacaoNecessaria *= 2;
     pontuacaoTotal = 0;
     verificaJogadas = 0;
     verificaDescartes = 0;
     reiniciarJogo();
     pontosRestantes = pontuacaoNecessaria;
-  }
 
+    // Atualiza o status com os valores zerados e nova pontuação
+    const statusComponente = document.querySelector("status-display") as Status;
+    if (statusComponente) {
+      statusComponente.atualizaStatus(
+        pontosRestantes,
+        pontuacaoTotal,
+        //pontos zerados
+        0,
+        //raridade zerada
+        0
+      );
+    }
+    //retorna pra impedir de rodar depois de conseguido a qtde de pontos pro nível
+    return;
+  }
   //busca o componente de status na pagina
   const statusComponente = document.querySelector("status-display") as Status;
 
