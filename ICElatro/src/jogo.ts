@@ -1,58 +1,73 @@
 import { cartasJogadas } from "./main";
+import { type Cartas } from "./tipos";
 
-export let pontos = 0;
-export let raridade = 0;
-export let total = 0;
+export type ResultadoCombinacao = {
+  pontos: number;
+  raridade: number;
+  total: number;
+  combinacao: string;
+};
 
 //função para verificar as combinações
-export function verificaCombinacoes() {
+export function verificaCombinacoes(): ResultadoCombinacao {
   if (cartasJogadas.length < 5) {
-    maiorCarta();
+    let maior = maiorCarta();
     console.log("MAIOR CARTA.");
-    return;
+    return {
+      pontos: maior.pontos,
+      raridade: 1,
+      total: maior.pontos * 1,
+      combinacao: "MAIOR CARTA"
+    };
   }
   else if (quadra()) {
-    pontos = calculaPontos();
-    raridade = 6;
-    total = pontos * raridade;
+    const pontos = calculaPontos();
+    const raridade = 6;
+    const total = pontos * raridade;
     console.log("QUADRA.");
+    return { pontos, raridade, total, combinacao: "QUADRA" };
   } 
   else if (fullHouse()) {
-    pontos = calculaPontos();
-    raridade = 3;
-    total = pontos * raridade;
+    const pontos = calculaPontos();
+    const raridade = 3;
+    const total = pontos * raridade;
     console.log("FULL HOUSE.");
-
+    return { pontos, raridade, total, combinacao: "FULL HOUSE" };
   } 
   else if (flush()) {
-    pontos = calculaPontos();
-    raridade = 5;
-    total = pontos * raridade;
+    const pontos = calculaPontos();
+    const raridade = 5;
+    const total = pontos * raridade;
     console.log("FLUSH.");
-
+    return { pontos, raridade, total, combinacao: "FLUSH" };
   } 
   else if (trinca()) {
-    pontos = calculaPontos();
-    raridade = 3;
-    total = pontos * raridade;
+    const pontos = calculaPontos();
+    const raridade = 3;
+    const total = pontos * raridade;
     console.log("TRINCA.");
-
+    return { pontos, raridade, total, combinacao: "TRINCA" };
   } 
   else if (duplas()) {
-    pontos = calculaPontos();
-    raridade = 3;
-    total = pontos * raridade;
-    console.log("DUPLA.");
+    const pontos = calculaPontos();
+    const raridade = 3;
+    const total = pontos * raridade;
+    console.log("DOIS PARES.");
+    return { pontos, raridade, total, combinacao: "DOIS PARES" };
   } 
   else {
-    maiorCarta();
+    let maior = maiorCarta();
     console.log("MAIOR CARTA.");
-
+    return {
+      pontos: maior.pontos,
+      raridade: 1,
+      total: maior.pontos * 1,
+      combinacao: "MAIOR CARTA"
+    };
   }
 }
 
 //funções para verificação
-
 function quadra(): boolean {
   for (let i = 0; i < 5; i++) {
     let cont = 0;
@@ -156,14 +171,13 @@ function duplas(): boolean {
   return paresEncontrados.length === 2;
 }
 
-function maiorCarta(): void {
-  let maiorC = cartasJogadas[0].pontos;
+//função para retornar a maior carta
+function maiorCarta(): Cartas {
+  let maiorC = cartasJogadas[0];
   for (let i = 1; i < cartasJogadas.length; i++) {
-    if (cartasJogadas[i].pontos > maiorC) maiorC = cartasJogadas[i].pontos;
+    if (cartasJogadas[i].pontos > maiorC.pontos) maiorC = cartasJogadas[i];
   }
-  pontos = maiorC;
-  raridade = 1;
-  total = pontos * raridade;
+  return maiorC;
 }
 
 //função para calcular os pontos
