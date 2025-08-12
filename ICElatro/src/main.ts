@@ -42,6 +42,12 @@ export let cartasJogadas: Cartas[] = [];
 let verificaJogadas = 0;
 let verificaDescartes = 0;
 
+// Variável para acumular a pontuação total
+let pontuacaoTotal = 0;
+
+// Pontos necessários para a vitória na primeira rodada
+let pontuacaoNecessaria = 100;
+
 //registra o componente de status
 Status.define();
 
@@ -60,6 +66,7 @@ function verificaReiniciarJogo() {
   if (verificaJogadas >= 4 && verificaDescartes >= 3) {
     verificaJogadas = 0;
     verificaDescartes = 0;
+    pontuacaoTotal = 0; 
     reiniciarJogo();
   }
 }
@@ -69,6 +76,8 @@ function reiniciarJogo() {
   maoInicial();
   renderizarMão();
 }
+
+
 
 //ações dos botões "Jogar" e "Tutorial" (dentro da tela inicial)
 botaoJogar.addEventListener("click", () => {
@@ -149,17 +158,32 @@ botaoJogarCartas.addEventListener("click", () => {
 
   //resultado da combinação
   const resultado = verificaCombinacoes();
-  
+
+  //acumula os pontos
+  pontuacaoTotal += resultado.total;
+
+  // Calcula os pontos restantes para a vitória
+  let pontosRestantes = pontuacaoNecessaria - pontuacaoTotal;
+
+  //se conseguir ganhar, reinicia dobrando a pontuação necessária
+  if (pontosRestantes <= 0) {
+    alert("Você venceu essa rodada! Iniciando nova rodada com desafio maior.");
+    pontuacaoNecessaria *= 2;
+    pontuacaoTotal = 0;
+    verificaJogadas = 0;
+    verificaDescartes = 0;
+    reiniciarJogo();
+    pontosRestantes = pontuacaoNecessaria;
+  }
+
   //busca o componente de status na pagina
   const statusComponente = document.querySelector("status-display") as Status;
 
   //verifica se o componente existe e chama o método pra atualizar a pontuação
   if (statusComponente && resultado) {
-    // Definie a pontuação necessária como 100
-    const pontuacaoNecessaria = 100; 
     statusComponente.atualizaStatus(
-      pontuacaoNecessaria,
-      resultado.total,
+      pontosRestantes,
+      pontuacaoTotal,
       resultado.pontos,
       resultado.raridade
     );

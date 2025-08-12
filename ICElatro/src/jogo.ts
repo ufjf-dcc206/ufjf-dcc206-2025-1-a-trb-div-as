@@ -2,8 +2,11 @@ import { cartasJogadas } from "./main";
 import { type Cartas } from "./tipos";
 
 export type ResultadoCombinacao = {
+  //soma simples dos pontos das cartas jogadas
   pontos: number;
+  //multiplicador conforme a combinação
   raridade: number;
+  // pontos * raridade
   total: number;
   combinacao: string;
 };
@@ -22,14 +25,14 @@ export function verificaCombinacoes(): ResultadoCombinacao {
   }
   else if (quadra()) {
     const pontos = calculaPontos();
-    const raridade = 6;
+    const raridade = 4;
     const total = pontos * raridade;
     console.log("QUADRA.");
     return { pontos, raridade, total, combinacao: "QUADRA" };
   } 
   else if (fullHouse()) {
     const pontos = calculaPontos();
-    const raridade = 3;
+    const raridade = 6;
     const total = pontos * raridade;
     console.log("FULL HOUSE.");
     return { pontos, raridade, total, combinacao: "FULL HOUSE" };
@@ -50,7 +53,7 @@ export function verificaCombinacoes(): ResultadoCombinacao {
   } 
   else if (duplas()) {
     const pontos = calculaPontos();
-    const raridade = 3;
+    const raridade = 2;
     const total = pontos * raridade;
     console.log("DOIS PARES.");
     return { pontos, raridade, total, combinacao: "DOIS PARES" };
