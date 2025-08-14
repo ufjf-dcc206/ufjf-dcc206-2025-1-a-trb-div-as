@@ -15,12 +15,28 @@ const botaoDescartarCartas = document.getElementById("bDescartarCartas") as HTML
 let verificaJogadas = 4;
 let verificaDescartes = 3;
 
+//status das jogadas e descartes
+const statusJogadas = document.getElementById("statusJogadas") as HTMLDivElement;
+const statusDescartes = document.getElementById("statusDescartes") as HTMLDivElement;
+
+function atualizaStatus() {
+  if(verificaJogadas === 0)
+    statusJogadas.textContent = `Você não possui mais jogadas.`;
+  else
+    statusJogadas.textContent = `Jogadas restantes: ${verificaJogadas}`;
+  if(verificaDescartes === 0)
+    statusDescartes.textContent = `Você não possui mais descartes.`;
+  else
+    statusDescartes.textContent = `Descartes restantes: ${verificaDescartes}`;
+}
+
 //função para iniciar o jogo
 function iniciarJogo(telaInicial: HTMLDivElement, telaJogo: HTMLDivElement) {
   telaInicial.style.display = "none"; //tira a tela inicial
   telaJogo.style.display = "block"; //inicia a tela do jogo
   maoInicial();
   renderizarMão();
+  atualizaStatus();
 }
 
 let indices: number[] = []; //índices das cartas selecionadas
@@ -90,11 +106,13 @@ function renderizarMão() {
 
 function verificaJogo(): void {
     if(verificaJogadas === 0 && verificaDescartes === 0) {
+        atualizaStatus();
+        alert("Número máximo de jogadas e descartes atingidos! O jogo será reiniciado!")
         verificaJogadas = 4;
         verificaDescartes = 3;
-        alert("Número máximo de jogadas e descartes atingidos! O jogo será reiniciado!")
         iniciarJogo(telaInicial, telaJogo);
     }
+    else atualizaStatus();
 }
 
 //ações dos botões "Jogar" e "Tutorial" (tela inicial)
@@ -106,8 +124,7 @@ botaoTutorial.addEventListener("click", () => {});
 
 //ações dos botões "Jogar" e "Descartar" (dentro do jogo)
 botaoJogarCartas.addEventListener("click", () => {
-  if (verificaJogadas === 0) {
-    console.log("Você já jogou o número máximo de vezes.");
+  if (verificaJogadas === 0){
     return;
   } //verifica se o jogador já atingiu o limite de jogadas
 
@@ -121,15 +138,11 @@ botaoJogarCartas.addEventListener("click", () => {
   indices = [];
   verificaJogadas--;
   verificaJogo();
-
   renderizarMão();
 });
 
 botaoDescartarCartas.addEventListener("click", () => {
-  if (verificaDescartes === 0) {
-    console.log("Você já descartou o número máximo de vezes.");
-    return;
-  }  //verifica se o jogador já atingiu o limite de descartes
+  if (verificaDescartes === 0) return; //verifica se o jogador já atingiu o limite de descartes
 
   if (indices.length === 0) {
     console.log("Nenhuma carta foi selecionada");
@@ -140,6 +153,5 @@ botaoDescartarCartas.addEventListener("click", () => {
   indices = [];
   verificaDescartes--;
   verificaJogo();
-
   renderizarMão();
 });
