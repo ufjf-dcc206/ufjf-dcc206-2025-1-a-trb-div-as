@@ -20,6 +20,47 @@ body {
   gap: 5px;
   padding: 10px 20px;
   margin: 10px;
+
+}
+
+#bJogar {
+  padding: 8px 12px;
+  background-color: #cececd;
+  border: 1px solid #888;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #000;
+}
+
+#bJogar:hover {
+  padding: 8px 12px;
+  background-color: #acacab;
+  border: 1px solid #888;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #000;
+}
+
+#bTutorial {
+  padding: 8px 12px;
+  background-color: #cececd;
+  border: 1px solid #888;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #000;
+}
+
+#bTutorial:hover {
+  padding: 8px 12px;
+  background-color: #acacab;
+  border: 1px solid #888;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #000;
 }
 
 #telaJogo {
@@ -59,9 +100,29 @@ body {
   color: #000;
 }
 
+#bJogarCartas:hover {
+  padding: 8px 16px;
+  background-color: #7bc73d;
+  border: 1px solid #888;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #000;
+}
+
 #bDescartarCartas {
   padding: 8px 16px;
   background-color: #e4564c;
+  border: 1px solid #888;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #000;
+}
+
+#bDescartarCartas:hover {
+  padding: 8px 16px;
+  background-color: #d1463c;
   border: 1px solid #888;
   border-radius: 5px;
   font-size: 18px;
