@@ -1,6 +1,5 @@
-export class Status extends HTMLElement {
-    
-    constructor() {
+/*export class Status extends HTMLElement {
+  constructor() {
     super();
     // anexa o shadow dom (isola o CSS e o HTML)
     this.attachShadow({ mode: "open" });
@@ -38,20 +37,26 @@ export class Status extends HTMLElement {
     `;
   }
 
-  //definição do metodo
+  //definição do método
   public atualizaStatus(
     pontuacaoNecessaria: number,
     pontuacaoTotal: number,
     soma: number,
     raridade: number
-  )
-  
-  {
+  ) {
     //realiza busca dos elementos no shadow dom
-    const pontuacaoNecessariaE = this.shadowRoot!.querySelector("#pontuacaoNecessaria span") as HTMLSpanElement;
-    const pontuacaoTotalE = this.shadowRoot!.querySelector("#pontuacaoTotal span") as HTMLSpanElement;
-    const somaE = this.shadowRoot!.querySelector("#somaDasCartasJogadas span") as HTMLSpanElement;
-    const raridadeE = this.shadowRoot!.querySelector("#raridadeMao span") as HTMLSpanElement;
+    const pontuacaoNecessariaE = this.shadowRoot!.querySelector(
+      "#pontuacaoNecessaria span"
+    ) as HTMLSpanElement;
+    const pontuacaoTotalE = this.shadowRoot!.querySelector(
+      "#pontuacaoTotal span"
+    ) as HTMLSpanElement;
+    const somaE = this.shadowRoot!.querySelector(
+      "#somaDasCartasJogadas span"
+    ) as HTMLSpanElement;
+    const raridadeE = this.shadowRoot!.querySelector(
+      "#raridadeMao span"
+    ) as HTMLSpanElement;
 
     //atualiza o conteudo dos elementos
     pontuacaoNecessariaE.textContent = pontuacaoNecessaria.toString();
@@ -65,10 +70,9 @@ export class Status extends HTMLElement {
     //inicializa a pontuação
     this.atualizaStatus(100, 0, 0, 0);
   }
- 
-  //define o componente pro navegaor reconhecer
-  static define(): void {
-    customElements.define("status-display", Status); 
-  }
 
-}
+  //define o componente pro navegador reconhecer
+  static define(): void {
+    customElements.define("status-display", Status);
+  }
+}*/

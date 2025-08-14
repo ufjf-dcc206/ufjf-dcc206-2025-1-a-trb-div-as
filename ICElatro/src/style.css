@@ -40,39 +40,6 @@ body {
   gap: 15px;
 }
 
-#pontuação {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  left: 40px;
-  z-index: 10;
-  top: 50%;
-  transform: translateY(-80%);
-}
-
-#pontuação > div {
-  padding: 8px 16px;
-  background-color: #ddd;
-  border: 1px solid #888;
-  border-radius: 5px;
-  font-size: 18px;
-  font-weight: bold;
-  color: #000;
-  margin-bottom: 10px;
-}
-
-#baralho {
-  width: 170px;
-  height: 250px;
-  border-radius: 10px;
-  display: flex;
-  position: absolute;
-  right: 80px;
-  z-index: 10;
-  top: 48%;
-  transform: translateY(-70%);
-}
-
 #botoesJogo {
   display: flex;
   align-items: center;
