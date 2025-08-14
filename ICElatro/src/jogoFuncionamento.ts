@@ -52,7 +52,7 @@ export function jogar(indices: number[]): void {
     let carta = mao.splice(j, 1)[0];
     if (carta) emJogo.push(carta);
   }
-  console.log(mao, emJogo);
+  console.log(emJogo);
 
   //verifica combinações (com o array "emJogo") e retorna pontos (?)
 

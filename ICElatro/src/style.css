@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap');
+
 body {
-  font-family: sans-serif;
+  font-family: 'Montserrat', sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -9,8 +11,19 @@ body {
 }
 
 #titulo {
-  margin-bottom: 30px;
-  font-size: 60px;
+  font-size: 65px;
+  font-weight: 700;
+  color: #444;
+  text-transform: uppercase;
+  letter-spacing: -2px;
+  margin-bottom: 40px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15); 
+  transition: all 0.2s;
+}
+
+button {
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: -1px;
 }
 
 #botoes {
@@ -20,27 +33,23 @@ body {
   gap: 5px;
   padding: 10px 20px;
   margin: 10px;
-
 }
 
 #bJogar {
-  padding: 8px 12px;
+  padding: 8px 18px;
   background-color: #cececd;
   border: 1px solid #888;
   border-radius: 5px;
   font-size: 16px;
   font-weight: bold;
-  color: #000;
+  color: #2c2c2c;
+  transition: all 0.2s;
 }
 
 #bJogar:hover {
-  padding: 8px 12px;
   background-color: #acacab;
-  border: 1px solid #888;
-  border-radius: 5px;
-  font-size: 16px;
-  font-weight: bold;
-  color: #000;
+  transform: scale(1.1); 
+  cursor: pointer;
 }
 
 #bTutorial {
@@ -50,17 +59,14 @@ body {
   border-radius: 5px;
   font-size: 16px;
   font-weight: bold;
-  color: #000;
+  color: #2c2c2c;
+  transition: all 0.2s;
 }
 
 #bTutorial:hover {
-  padding: 8px 12px;
   background-color: #acacab;
-  border: 1px solid #888;
-  border-radius: 5px;
-  font-size: 16px;
-  font-weight: bold;
-  color: #000;
+  transform: scale(1.1); 
+  cursor: pointer;
 }
 
 #telaJogo {
@@ -98,16 +104,13 @@ body {
   font-size: 18px;
   font-weight: bold;
   color: #000;
+  transition: all 0.2s;
 }
 
 #bJogarCartas:hover {
-  padding: 8px 16px;
   background-color: #7bc73d;
-  border: 1px solid #888;
-  border-radius: 5px;
-  font-size: 18px;
-  font-weight: bold;
-  color: #000;
+  transform: scale(1.1); 
+  cursor: pointer;
 }
 
 #bDescartarCartas {
@@ -118,16 +121,13 @@ body {
   font-size: 18px;
   font-weight: bold;
   color: #000;
+  transition: all 0.2s;
 }
 
 #bDescartarCartas:hover {
-  padding: 8px 16px;
   background-color: #d1463c;
-  border: 1px solid #888;
-  border-radius: 5px;
-  font-size: 18px;
-  font-weight: bold;
-  color: #000;
+  transform: scale(1.1); 
+  cursor: pointer;
 }
 
 .carta {
@@ -146,6 +146,26 @@ body {
   font-size: 40px;
   position: relative;
   text-align: center;
+}
+
+.carta:hover {
+  width: 60px;
+  height: 100px;
+  border: 1px solid #333;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  background-color: #dedcdc;
+  font-weight: bold;
+  font-size: 40px;
+  position: relative;
+  text-align: center;
+  transform: translateY(-5px);
+  transition: all 0.2s;
 }
 
 .nomeCarta {
