@@ -5,6 +5,8 @@ import { mao, maoInicial, jogar, descartar } from "./jogoFuncionamento";
 const telaInicial = document.getElementById("telaInicial") as HTMLDivElement;
 const botaoJogar = document.getElementById("bJogar") as HTMLButtonElement;
 const botaoTutorial = document.getElementById("bTutorial") as HTMLButtonElement;
+const tutorial = document.getElementById("modalTutorial") as HTMLDivElement;
+const botaoFecharTutorial = document.querySelector(".fechar");
 
 //tela jogo
 const telaJogo = document.getElementById("telaJogo") as HTMLDivElement;
@@ -120,7 +122,13 @@ botaoJogar.addEventListener("click", () => {
   iniciarJogo(telaInicial, telaJogo);
 });
 
-botaoTutorial.addEventListener("click", () => {});
+botaoTutorial.addEventListener("click", () => {
+  if(tutorial) tutorial.style.display = "block";
+});
+
+botaoFecharTutorial?.addEventListener("click", () => {
+  if (tutorial) tutorial.style.display = "none";
+});
 
 //ações dos botões "Jogar" e "Descartar" (dentro do jogo)
 botaoJogarCartas.addEventListener("click", () => {

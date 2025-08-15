@@ -6,15 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ICElatro</title>
   </head>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap"
+    rel="stylesheet"
+  />
   <body>
     <div id="telaInicial">
       <div id="titulo">ICElatro</div>
       <div id="botoes">
         <button id="bJogar">Jogar</button>
         <button id="bTutorial">Tutorial</button>
+        <div id="modalTutorial" class="modal">
+          <div class="modal-conteudo">
+            <span class="fechar">&times;</span>
+            <p>Tutorial...</p>
+          </div>
+        </div>
       </div>
     </div>
-
     <div id="telaJogo">
       <div id="cartasNaMao"></div>
       <div id="botoesJogo">
