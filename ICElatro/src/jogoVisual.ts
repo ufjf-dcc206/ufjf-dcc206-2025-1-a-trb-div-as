@@ -12,6 +12,7 @@ const botaoFecharTutorial = document.querySelector(".fechar");
 const telaJogo = document.getElementById("telaJogo") as HTMLDivElement;
 const botaoJogarCartas = document.getElementById("bJogarCartas") as HTMLButtonElement;
 const botaoDescartarCartas = document.getElementById("bDescartarCartas") as HTMLButtonElement;
+const voltarTelaInicial = document.getElementById("voltarTI") as HTMLButtonElement;
 
 //variáveis para gerenciar quantas vezes o jogador já jogou ou descartou as cartas
 let verificaJogadas = 4;
@@ -130,7 +131,7 @@ botaoFecharTutorial?.addEventListener("click", () => {
   if (tutorial) tutorial.style.display = "none";
 });
 
-//ações dos botões "Jogar" e "Descartar" (dentro do jogo)
+//ações dos botões "Jogar", "Descartar" e voltar para tela inicial (dentro do jogo)
 botaoJogarCartas.addEventListener("click", () => {
   if (verificaJogadas === 0){
     return;
@@ -162,4 +163,9 @@ botaoDescartarCartas.addEventListener("click", () => {
   verificaDescartes--;
   verificaJogo();
   renderizarMão();
+});
+
+voltarTelaInicial.addEventListener("click", () => {
+  telaJogo.style.display = "none";
+  telaInicial.style.display = "block";
 });

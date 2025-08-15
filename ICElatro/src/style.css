@@ -116,6 +116,25 @@ button {
   margin-bottom: 45px;
 }
 
+#voltarTI {
+  display: flex;
+  font-size: 20px;
+  position: absolute;
+  top: 56.5px;
+  left: 9%;
+  transform: translateX(-50%);
+  font-size: 18px;
+  font-weight: bold;
+  color: #350e53;
+  background-color: #edecf7;
+  border: #edecf7;
+}
+
+#voltarTI:hover {
+  color: #421465;
+  cursor: pointer;
+}
+
 #statusJD {
   display: flex;
   gap: 20px;
