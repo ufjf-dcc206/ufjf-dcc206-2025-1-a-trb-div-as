@@ -1,5 +1,7 @@
+import { verificaCombinacoes } from "./combinações";
+
 //tipo cartas
-type Cartas = {
+export type Cartas = {
   nome: string | number;
   naipe: string;
   pontos: number;
@@ -30,7 +32,7 @@ function embaralharBaralho(baralho: Cartas[]): void {
 }
 
 export let mao: Cartas[] = []; //criação da mão
-let emJogo: Cartas[] = []; //cartas em jogo (para análise de combinações)
+export let emJogo: Cartas[] = []; //cartas em jogo (para análise de combinações)
 let descartadas: Cartas[] = []; //cartas descartadas
 
 //função para separar mão inicial
@@ -54,15 +56,15 @@ export function jogar(indices: number[]): void {
   }
   console.log(emJogo);
 
-  //verifica combinações (com o array "emJogo") e retorna pontos (?)
+  verificaCombinacoes();
 
   descartaCartasJogadas();
 }
 
 function descartaCartasJogadas(): void {
-    for(let i = 0; i<emJogo.length; i++) {
-        let carta = emJogo.pop();
-        if (carta) descartadas.push(carta);
+    while(emJogo.length > 0){
+      let carta = emJogo.pop();
+      if (carta) descartadas.push(carta);
     }
     atualizaMaoJogo();
 }
@@ -82,7 +84,7 @@ export function descartar(indices: number[]): void {
 
 function atualizaMaoJogo(): void {
   //passa cartas do "descartadas" p/ o baralho e do baralho p/ mão
-  for (let i = 0; i < descartadas.length; i++) {
+  while (descartadas.length > 0){
     let carta = descartadas.pop();
     if (carta) baralho.push(carta); //CARTAS CONTINUAM NA MESMA ORDEM (MUDAR?)
   }

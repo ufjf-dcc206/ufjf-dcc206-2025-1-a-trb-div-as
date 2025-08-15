@@ -1,4 +1,7 @@
-/*export type ResultadoCombinacao = {
+import { emJogo } from "./jogoFuncionamento";
+import { type Cartas } from "./jogoFuncionamento";
+
+export type ResultadoCombinacao = {
   //soma simples dos pontos das cartas jogadas
   pontos: number;
   //multiplicador conforme a combinação
@@ -10,7 +13,7 @@
 
 //função para verificar as combinações
 export function verificaCombinacoes(): ResultadoCombinacao {
-  if (cartasJogadas.length < 5) {
+  if (emJogo.length < 5) {
     let maior = maiorCarta();
     console.log("MAIOR CARTA.");
     return {
@@ -67,7 +70,7 @@ function quadra(): boolean {
     let cont = 0;
 
     for (let j = 0; j < 5; j++) {
-      if (cartasJogadas[i].nome === cartasJogadas[j].nome) {
+      if (emJogo[i].nome === emJogo[j].nome) {
         cont++;
       }
     }
@@ -86,13 +89,13 @@ function fullHouse(): boolean {
     let cont = 0;
 
     for (let j = 0; j < 5; j++) {
-      if (cartasJogadas[i].nome === cartasJogadas[j].nome) {
+      if (emJogo[i].nome === emJogo[j].nome) {
         cont++;
       }
     }
 
     if (cont === 3) {
-      valorTrinca = cartasJogadas[i].nome;
+      valorTrinca = emJogo[i].nome;
     }
   }
 
@@ -102,8 +105,8 @@ function fullHouse(): boolean {
 
   //percorre as cartas para pegar as que não são da trinca
   for (let i = 0; i < 5; i++) {
-    if (cartasJogadas[i].nome !== valorTrinca) {
-      resto.push(String(cartasJogadas[i].nome));
+    if (emJogo[i].nome !== valorTrinca) {
+      resto.push(String(emJogo[i].nome));
     }
   }
 
@@ -114,9 +117,9 @@ function fullHouse(): boolean {
 }
 
 function flush(): boolean {
-  const naipeRef = cartasJogadas[0].naipe;
+  const naipeRef = emJogo[0].naipe;
   for (let i = 1; i < 5; i++) {
-    if (cartasJogadas[i].naipe !== naipeRef) {
+    if (emJogo[i].naipe !== naipeRef) {
       return false;
     }
   }
@@ -128,7 +131,7 @@ function trinca(): boolean {
     let cont = 0;
 
     for (let j = 0; j < 5; j++) {
-      if (cartasJogadas[i].nome === cartasJogadas[j].nome) {
+      if (emJogo[i].nome === emJogo[j].nome) {
         cont++;
       }
     }
@@ -148,15 +151,15 @@ function duplas(): boolean {
   for (let i = 0; i < 5; i++) {
     let cont = 0;
 
-    for (let j = 0; j < cartasJogadas.length; j++) {
-      if (cartasJogadas[i].nome === cartasJogadas[j].nome) {
+    for (let j = 0; j < emJogo.length; j++) {
+      if (emJogo[i].nome === emJogo[j].nome) {
         cont++;
       }
     }
 
     if (cont === 2) {
-      if (!paresEncontrados.includes(String(cartasJogadas[i].nome))) {
-        paresEncontrados.push(String(cartasJogadas[i].nome));
+      if (!paresEncontrados.includes(String(emJogo[i].nome))) {
+        paresEncontrados.push(String(emJogo[i].nome));
       }
     }
   }
@@ -167,9 +170,9 @@ function duplas(): boolean {
 
 //função para retornar a maior carta
 function maiorCarta(): Cartas {
-  let maiorC = cartasJogadas[0];
-  for (let i = 1; i < cartasJogadas.length; i++) {
-    if (cartasJogadas[i].pontos > maiorC.pontos) maiorC = cartasJogadas[i];
+  let maiorC = emJogo[0];
+  for (let i = 1; i < emJogo.length; i++) {
+    if (emJogo[i].pontos > maiorC.pontos) maiorC = emJogo[i];
   }
   return maiorC;
 }
@@ -177,8 +180,8 @@ function maiorCarta(): Cartas {
 //função para calcular os pontos
 function calculaPontos(): number {
   let soma = 0;
-  for (let i = 0; i < cartasJogadas.length; i++) {
-    soma += cartasJogadas[i].pontos;
+  for (let i = 0; i < emJogo.length; i++) {
+    soma += emJogo[i].pontos;
   }
   return soma;
-}*/
+}
