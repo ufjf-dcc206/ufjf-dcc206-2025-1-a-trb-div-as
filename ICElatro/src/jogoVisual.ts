@@ -1,6 +1,7 @@
 import "./style.css";
 import { mao, maoInicial, jogar, descartar } from "./jogoFuncionamento";
 import { Status } from "./status";
+
 //registra o componente 
 Status.define();
 
@@ -123,6 +124,7 @@ function verificaJogo(): void {
     if(verificaJogadas === 0) {
         atualizaStatus();
         perdeu.style.display = "block";
+        //fechar o botão do aviso reinicia o jogo
         botaoFecharPG?.addEventListener("click", () => {
           if(perdeu){
             perdeu.style.display = "none";
@@ -132,9 +134,7 @@ function verificaJogo(): void {
             pontosNecessarios = 100;
             iniciarJogo(telaInicial, telaJogo);
           }
-          
         });
-       
     }
     else atualizaStatus();
 }
@@ -154,12 +154,10 @@ botaoFecharTutorial?.addEventListener("click", () => {
 
 //ações dos botões "Jogar", "Descartar" e voltar para tela inicial (dentro do jogo)
 botaoJogarCartas.addEventListener("click", () => {
-
-  //verifica se tem pelo menos uma carta selecionada
   if (indices.length === 0) {
     console.log("Nenhuma carta foi selecionada");
     return;
-  } 
+  } //verifica se tem pelo menos uma carta selecionada
 
   //chama a função jogar e armazena o resultado
   const resultadoDaJogada = jogar(indices);
