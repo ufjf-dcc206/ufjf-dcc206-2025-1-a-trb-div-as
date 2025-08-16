@@ -101,6 +101,11 @@ button {
   transition: all 0.2s;
 }
 
+.fechar:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
 .modal-perdeu {
   background-color: #de4468;
   border: 1px solid #b83352;
@@ -116,10 +121,6 @@ button {
   box-shadow: #000000;
 }
 
-.fechar:hover {
-  transform: scale(1.1);
-  cursor: pointer;
-}
 
 .fecharP {
   color: #ffffff;

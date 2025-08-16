@@ -19,7 +19,7 @@ const botaoDescartarCartas = document.getElementById("bDescartarCartas") as HTML
 const voltarTelaInicial = document.getElementById("voltarTI") as HTMLButtonElement;
 const statusPontuacao = document.querySelector("status-pontuacao") as Status; // pega a referencia
 const perdeu = document.getElementById("modalPerdeu") as HTMLButtonElement;
-const botaoFecharPG = document.querySelector(".fecharP");
+const botaoFecharP = document.querySelector(".fecharP");
 
 //variáveis para gerenciar quantas vezes o jogador já jogou ou descartou as cartas
 let verificaJogadas = 4;
@@ -125,7 +125,7 @@ function verificaJogo(): void {
         atualizaStatus();
         perdeu.style.display = "block";
         //fechar o botão do aviso reinicia o jogo
-        botaoFecharPG?.addEventListener("click", () => {
+        botaoFecharP?.addEventListener("click", () => {
           if(perdeu){
             perdeu.style.display = "none";
             verificaJogadas = 4;
