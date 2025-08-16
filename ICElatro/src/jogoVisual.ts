@@ -153,20 +153,27 @@ botaoJogarCartas.addEventListener("click", () => {
     return;
   } 
 
-  // Chama a função jogar e armazena o resultado
+  //chama a função jogar e armazena o resultado
   const resultadoDaJogada = jogar(indices);
 
-  // Acumula os pontos da jogada e diminui os pontos necessários
+  //acumula os pontos da jogada e diminui os pontos necessários
   pontuacaoTotal += resultadoDaJogada.total;
   pontosNecessarios -= resultadoDaJogada.total;
 
   if(pontosNecessarios <=0){
     //exibir tela venceu
-    pontosNecessarios = 2*pontosNivel;
+    verificaJogadas = 5;
+    verificaDescartes = 3;
+    pontuacaoTotal = 0;
+    resultadoDaJogada.pontos = 0;
+    resultadoDaJogada.raridade = 0;
+    pontosNecessarios = 2 * pontosNivel;
     pontosNivel = pontosNecessarios;
+    maoInicial();
+    renderizarMão();
   }
 
-  // atualiza o painel de pontuação
+  //atualiza o painel de pontuação
   statusPontuacao.atualizaStatus(
     pontosNecessarios,
     pontuacaoTotal, // Usa a variável que está somando a pontuação
