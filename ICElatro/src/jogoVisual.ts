@@ -2,7 +2,7 @@ import "./style.css";
 import { mao, maoInicial, jogar, descartar } from "./jogoFuncionamento";
 import { Status } from "./status";
 
-//registra o componente 
+//registra o componente
 Status.define();
 
 //tela inicial
@@ -14,12 +14,21 @@ const botaoFecharTutorial = document.querySelector(".fechar");
 
 //tela jogo
 const telaJogo = document.getElementById("telaJogo") as HTMLDivElement;
-const botaoJogarCartas = document.getElementById("bJogarCartas") as HTMLButtonElement;
-const botaoDescartarCartas = document.getElementById("bDescartarCartas") as HTMLButtonElement;
-const voltarTelaInicial = document.getElementById("voltarTI") as HTMLButtonElement;
+const botaoJogarCartas = document.getElementById(
+  "bJogarCartas"
+) as HTMLButtonElement;
+const botaoDescartarCartas = document.getElementById(
+  "bDescartarCartas"
+) as HTMLButtonElement;
+const voltarTelaInicial = document.getElementById(
+  "voltarTI"
+) as HTMLButtonElement;
 const statusPontuacao = document.querySelector("status-pontuacao") as Status; // pega a referencia
 const perdeu = document.getElementById("modalPerdeu") as HTMLButtonElement;
 const botaoFecharP = document.querySelector(".fecharP");
+
+const ganhou = document.getElementById("modalGanhou") as HTMLButtonElement;
+const botaoFecharG = document.querySelector(".fecharG");
 
 //variáveis para gerenciar quantas vezes o jogador já jogou ou descartou as cartas
 let verificaJogadas = 4;
@@ -31,15 +40,18 @@ let pontosNivel = pontosNecessarios;
 let pontuacaoTotal = 0;
 
 //status das jogadas e descartes
-const statusJogadas = document.getElementById("statusJogadas") as HTMLDivElement;
-const statusDescartes = document.getElementById("statusDescartes") as HTMLDivElement;
+const statusJogadas = document.getElementById(
+  "statusJogadas"
+) as HTMLDivElement;
+const statusDescartes = document.getElementById(
+  "statusDescartes"
+) as HTMLDivElement;
 
 function atualizaStatus() {
-  if(verificaJogadas === 0)
+  if (verificaJogadas === 0)
     statusJogadas.textContent = `Você não possui mais jogadas.`;
-  else
-    statusJogadas.textContent = `Jogadas restantes: ${verificaJogadas}`;
-  if(verificaDescartes === 0)
+  else statusJogadas.textContent = `Jogadas restantes: ${verificaJogadas}`;
+  if (verificaDescartes === 0)
     statusDescartes.textContent = `Você não possui mais descartes.`;
   else
     statusDescartes.textContent = `Descartes restantes: ${verificaDescartes}`;
@@ -121,22 +133,21 @@ function renderizarMão() {
 }
 
 function verificaJogo(): void {
-    if(verificaJogadas === 0) {
-        atualizaStatus();
-        perdeu.style.display = "block";
-        //fechar o botão do aviso reinicia o jogo
-        botaoFecharP?.addEventListener("click", () => {
-          if(perdeu){
-            perdeu.style.display = "none";
-            verificaJogadas = 4;
-            verificaDescartes = 3;
-            pontuacaoTotal = 0;
-            pontosNecessarios = 100;
-            iniciarJogo(telaInicial, telaJogo);
-          }
-        });
-    }
-    else atualizaStatus();
+  if (verificaJogadas === 0) {
+    atualizaStatus();
+    perdeu.style.display = "block";
+    //fechar o botão do aviso reinicia o jogo
+    botaoFecharP?.addEventListener("click", () => {
+      if (perdeu) {
+        perdeu.style.display = "none";
+        verificaJogadas = 4;
+        verificaDescartes = 3;
+        pontuacaoTotal = 0;
+        pontosNecessarios = 100;
+        iniciarJogo(telaInicial, telaJogo);
+      }
+    });
+  } else atualizaStatus();
 }
 
 //ações dos botões "Jogar" e "Tutorial" (tela inicial)
@@ -145,7 +156,7 @@ botaoJogar.addEventListener("click", () => {
 });
 
 botaoTutorial.addEventListener("click", () => {
-  if(tutorial) tutorial.style.display = "block";
+  if (tutorial) tutorial.style.display = "block";
 });
 
 botaoFecharTutorial?.addEventListener("click", () => {
@@ -166,8 +177,13 @@ botaoJogarCartas.addEventListener("click", () => {
   pontuacaoTotal += resultadoDaJogada.total;
   pontosNecessarios -= resultadoDaJogada.total;
 
-  if(pontosNecessarios <=0){
+  if (pontosNecessarios <= 0) {
     //exibir tela venceu
+    ganhou.style.display = "block";
+    botaoFecharG?.addEventListener("click", () => {
+      ganhou.style.display = "none";
+    });
+
     verificaJogadas = 5;
     verificaDescartes = 3;
     pontuacaoTotal = 0;
@@ -199,7 +215,7 @@ botaoDescartarCartas.addEventListener("click", () => {
   if (indices.length === 0) {
     console.log("Nenhuma carta foi selecionada");
     return;
-  } 
+  }
 
   descartar(indices);
   indices = [];

@@ -121,7 +121,6 @@ button {
   box-shadow: #000000;
 }
 
-
 .fecharP {
   color: #ffffff;
   position: absolute;
@@ -133,6 +132,36 @@ button {
 }
 
 .fecharP:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.modal-ganhou {
+  background-color: #3ac08a; 
+  border: 1px solid #28a171;
+  border-radius: 8px;
+  margin: 15% auto;
+  padding: 20px;
+  width: 80%;
+  max-width: 500px;
+  position: relative;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  box-shadow: #000000;
+}
+
+.fecharG {
+  color: #ffffff;
+  position: absolute;
+  top: 5px;
+  right: 15px;
+  font-size: 28px;
+  font-weight: bold;
+  transition: all 0.2s;
+}
+
+.fecharG:hover {
   transform: scale(1.1);
   cursor: pointer;
 }
@@ -300,3 +329,5 @@ button {
   box-shadow: 0 4px 8px rgba(71, 71, 71, 0.3);
   transition: all 0.2s;
 }
+
+
