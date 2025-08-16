@@ -1,5 +1,8 @@
 import "./style.css";
 import { mao, maoInicial, jogar, descartar } from "./jogoFuncionamento";
+import { Status } from "./status";
+//registra o componente 
+Status.define();
 
 //tela inicial
 const telaInicial = document.getElementById("telaInicial") as HTMLDivElement;
@@ -13,10 +16,15 @@ const telaJogo = document.getElementById("telaJogo") as HTMLDivElement;
 const botaoJogarCartas = document.getElementById("bJogarCartas") as HTMLButtonElement;
 const botaoDescartarCartas = document.getElementById("bDescartarCartas") as HTMLButtonElement;
 const voltarTelaInicial = document.getElementById("voltarTI") as HTMLButtonElement;
+const statusPontuacao = document.querySelector("status-pontuacao") as Status; // pega a referencia
 
 //variáveis para gerenciar quantas vezes o jogador já jogou ou descartou as cartas
 let verificaJogadas = 4;
 let verificaDescartes = 3;
+
+//variáveis inicias de pontuação
+let pontosNecessarios = 100;
+let pontuacaoTotal = 0;
 
 //status das jogadas e descartes
 const statusJogadas = document.getElementById("statusJogadas") as HTMLDivElement;
@@ -40,6 +48,7 @@ function iniciarJogo(telaInicial: HTMLDivElement, telaJogo: HTMLDivElement) {
   maoInicial();
   renderizarMão();
   atualizaStatus();
+  statusPontuacao.atualizaStatus(pontosNecessarios, pontuacaoTotal, 0, 0); //inicializa a pontuação inicial do jogo
 }
 
 let indices: number[] = []; //índices das cartas selecionadas
@@ -143,7 +152,21 @@ botaoJogarCartas.addEventListener("click", () => {
     return;
   } 
 
-  jogar(indices);
+  // Chama a função jogar e armazena o resultado
+  const resultadoDaJogada = jogar(indices);
+
+  // Acumula os pontos da jogada e diminui os pontos necessários
+  pontuacaoTotal += resultadoDaJogada.total;
+  pontosNecessarios -= resultadoDaJogada.total;
+
+  // atualiza o painel de pontuação
+  statusPontuacao.atualizaStatus(
+    pontosNecessarios,
+    pontuacaoTotal, // Usa a variável que está somando a pontuação
+    resultadoDaJogada.pontos,
+    resultadoDaJogada.raridade
+  );
+
   indices = [];
   verificaJogadas--;
   verificaJogo();

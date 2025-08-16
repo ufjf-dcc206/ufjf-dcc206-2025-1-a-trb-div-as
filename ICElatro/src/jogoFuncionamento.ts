@@ -1,5 +1,4 @@
-import { verificaCombinacoes } from "./combinações";
-
+import { verificaCombinacoes, type ResultadoCombinacao } from "./combinações";
 //tipo cartas
 export type Cartas = {
   nome: string | number;
@@ -45,7 +44,7 @@ export function maoInicial(): void {
   }
 } //criar mão com web component
 
-export function jogar(indices: number[]): void {
+export function jogar(indices: number[]): ResultadoCombinacao{
   console.log(indices);
 
   indices.sort((a, b) => b - a); //ordena os índices (decrescente)
@@ -56,9 +55,11 @@ export function jogar(indices: number[]): void {
   }
   console.log(emJogo);
 
-  verificaCombinacoes();
+  const resultado = verificaCombinacoes();
 
   descartaCartasJogadas();
+
+  return resultado;
 }
 
 function descartaCartasJogadas(): void {

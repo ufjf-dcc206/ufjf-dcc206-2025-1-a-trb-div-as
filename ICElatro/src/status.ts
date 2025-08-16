@@ -1,4 +1,4 @@
-/*export class Status extends HTMLElement {
+export class Status extends HTMLElement {
   constructor() {
     super();
     // anexa o shadow dom (isola o CSS e o HTML)
@@ -73,6 +73,6 @@
 
   //define o componente pro navegador reconhecer
   static define(): void {
-    customElements.define("status-display", Status);
+    customElements.define("status-pontuacao", Status);
   }
-}*/
+}
