@@ -12,7 +12,6 @@ export class Status extends HTMLElement {
           flex-direction: column;
           position: absolute;
           left: 40px;
-          z-index: 10;
           top: 50%;
           transform: translateY(-80%);
         }

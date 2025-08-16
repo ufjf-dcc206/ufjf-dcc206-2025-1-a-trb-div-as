@@ -15,6 +15,7 @@
   <body>
     <div id="telaInicial">
       <div id="titulo">ICElatro</div>
+
       <div id="botoes">
         <button id="bJogar">Jogar</button>
         <button id="bTutorial">Tutorial</button>
@@ -26,17 +27,29 @@
         </div>
       </div>
     </div>
+
     <div id="telaJogo">
       <button id="voltarTI">↩ Tela Inicial</button>
+
       <status-pontuacao></status-pontuacao>
+
       <div id="cartasNaMao"></div>
+
       <div id="botoesJogo">
         <button id="bJogarCartas">Jogar</button>
         <button id="bDescartarCartas">Descartar</button>
       </div>
+
       <div id="statusJD">
         <div id="statusJogadas"></div>
         <div id="statusDescartes"></div>
+      </div>
+
+      <div id="modalPerdeu" class="modal">
+        <div class="modal-conteudo">
+          <span class="fecharP">&times;</span>
+          <p>Você perdeu!</p>
+        </div>
       </div>
     </div>
     <script type="module" src="/src/jogoVisual.ts"></script>

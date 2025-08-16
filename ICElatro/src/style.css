@@ -106,6 +106,21 @@ button {
   cursor: pointer;
 }
 
+.fecharP {
+  color: #aaa;
+  position: absolute;
+  top: 5px;
+  right: 15px;
+  font-size: 28px;
+  font-weight: bold;
+  transition: all 0.2s;
+}
+
+.fecharP:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
 #telaJogo {
   display: none;
   text-align: center;

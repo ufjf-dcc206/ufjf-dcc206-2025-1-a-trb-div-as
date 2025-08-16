@@ -17,6 +17,8 @@ const botaoJogarCartas = document.getElementById("bJogarCartas") as HTMLButtonEl
 const botaoDescartarCartas = document.getElementById("bDescartarCartas") as HTMLButtonElement;
 const voltarTelaInicial = document.getElementById("voltarTI") as HTMLButtonElement;
 const statusPontuacao = document.querySelector("status-pontuacao") as Status; // pega a referencia
+const perdeu = document.getElementById("modalPerdeu") as HTMLButtonElement;
+const botaoFecharPG = document.querySelector(".fecharP");
 
 //variáveis para gerenciar quantas vezes o jogador já jogou ou descartou as cartas
 let verificaJogadas = 4;
@@ -120,12 +122,19 @@ function renderizarMão() {
 function verificaJogo(): void {
     if(verificaJogadas === 0) {
         atualizaStatus();
-        alert("Número máximo de jogadas atingido! O jogo será reiniciado!")
-        verificaJogadas = 4;
-        verificaDescartes = 3;
-        pontuacaoTotal = 0;
-        pontosNecessarios = 100;
-        iniciarJogo(telaInicial, telaJogo);
+        perdeu.style.display = "block";
+        botaoFecharPG?.addEventListener("click", () => {
+          if(perdeu){
+            perdeu.style.display = "none";
+            verificaJogadas = 4;
+            verificaDescartes = 3;
+            pontuacaoTotal = 0;
+            pontosNecessarios = 100;
+            iniciarJogo(telaInicial, telaJogo);
+          }
+          
+        });
+       
     }
     else atualizaStatus();
 }

@@ -1,4 +1,5 @@
 import { verificaCombinacoes, type ResultadoCombinacao } from "./combinações";
+
 //tipo cartas
 export type Cartas = {
   nome: string | number;
