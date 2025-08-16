@@ -98,6 +98,7 @@ button {
   right: 15px;
   font-size: 28px;
   font-weight: bold;
+  transition: all 0.2s;
 }
 
 .fechar:hover {
@@ -118,21 +119,22 @@ button {
 
 #voltarTI {
   display: flex;
-  font-size: 20px;
+  font-size: 15px;
   position: absolute;
-  top: 56.5px;
-  left: 9%;
+  top: 59px;
+  left: 10%;
   transform: translateX(-50%);
-  font-size: 18px;
   font-weight: bold;
   color: #350e53;
   background-color: #edecf7;
   border: #edecf7;
+  transition: all 0.2s;
 }
 
 #voltarTI:hover {
   color: #421465;
   cursor: pointer;
+  font-size: 15.7px;
 }
 
 #statusJD {

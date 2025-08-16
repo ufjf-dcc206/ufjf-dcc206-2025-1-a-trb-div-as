@@ -18,19 +18,20 @@ export class Status extends HTMLElement {
         }
 
         #pontuação > div {
-          padding: 8px 16px;
-          background-color: #ddd;
-          border: 1px solid #888;
-          border-radius: 5px;
+          padding: 6px 8px;
+          background-color: #bdb2f7;
+          border: 1px solid #a295e4;
+          border-radius: 10px;
+          font-weight: bold;
+          color: #350e53;
           font-size: 18px;
           font-weight: bold;
-          color: #000;
-          margin-bottom: 10px;
+          margin-bottom: 6px;
         }
       </style>
       <div id="pontuação">
-        <div id="pontuacaoNecessaria">Pontuação Necessária: <span></span></div>
-        <div id="pontuacaoTotal">Pontuação Total: <span></span></div>
+        <div id="pontuacaoNecessaria">Pontuação necessária: <span></span></div>
+        <div id="pontuacaoTotal">Pontuação total: <span></span></div>
         <div id="somaDasCartasJogadas">Soma: <span></span></div>
         <div id="raridadeMao">Raridade: <span></span></div>
       </div>
