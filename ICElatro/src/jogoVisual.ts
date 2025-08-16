@@ -24,6 +24,7 @@ let verificaDescartes = 3;
 
 //variáveis inicias de pontuação
 let pontosNecessarios = 100;
+let pontosNivel = pontosNecessarios;
 let pontuacaoTotal = 0;
 
 //status das jogadas e descartes
@@ -158,6 +159,12 @@ botaoJogarCartas.addEventListener("click", () => {
   // Acumula os pontos da jogada e diminui os pontos necessários
   pontuacaoTotal += resultadoDaJogada.total;
   pontosNecessarios -= resultadoDaJogada.total;
+
+  if(pontosNecessarios <=0){
+    //exibir tela venceu
+    pontosNecessarios = 2*pontosNivel;
+    pontosNivel = pontosNecessarios;
+  }
 
   // atualiza o painel de pontuação
   statusPontuacao.atualizaStatus(
