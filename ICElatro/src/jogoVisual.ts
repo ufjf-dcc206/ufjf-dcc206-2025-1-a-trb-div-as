@@ -118,11 +118,13 @@ function renderizarMão() {
 }
 
 function verificaJogo(): void {
-    if(verificaJogadas === 0 && verificaDescartes === 0) {
+    if(verificaJogadas === 0) {
         atualizaStatus();
-        alert("Número máximo de jogadas e descartes atingidos! O jogo será reiniciado!")
+        alert("Número máximo de jogadas atingido! O jogo será reiniciado!")
         verificaJogadas = 4;
         verificaDescartes = 3;
+        pontuacaoTotal = 0;
+        pontosNecessarios = 100;
         iniciarJogo(telaInicial, telaJogo);
     }
     else atualizaStatus();
@@ -143,9 +145,6 @@ botaoFecharTutorial?.addEventListener("click", () => {
 
 //ações dos botões "Jogar", "Descartar" e voltar para tela inicial (dentro do jogo)
 botaoJogarCartas.addEventListener("click", () => {
-  if (verificaJogadas === 0){
-    return;
-  } //verifica se o jogador já atingiu o limite de jogadas
 
   //verifica se tem pelo menos uma carta selecionada
   if (indices.length === 0) {
