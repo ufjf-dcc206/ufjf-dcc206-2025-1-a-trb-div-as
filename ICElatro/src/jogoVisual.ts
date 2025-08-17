@@ -144,6 +144,7 @@ function verificaJogo(): void {
         verificaDescartes = 3;
         pontuacaoTotal = 0;
         pontosNecessarios = 100;
+        pontosNivel = pontosNecessarios;
         iniciarJogo(telaInicial, telaJogo);
       }
     });
