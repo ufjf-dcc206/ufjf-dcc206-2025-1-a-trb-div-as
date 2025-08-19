@@ -22,36 +22,41 @@ export function verificaCombinacoes(): ResultadoCombinacao {
       total: maior.pontos * 1,
       combinacao: "MAIOR CARTA",
     };
-  } else if (quadra()) {
-    const pontos = calculaPontos();
-    const raridade = 4;
-    const total = pontos * raridade;
-    console.log("QUADRA.");
-    return { pontos, raridade, total, combinacao: "QUADRA" };
   } else if (fullHouse()) {
     const pontos = calculaPontos();
     const raridade = 6;
     const total = pontos * raridade;
     console.log("FULL HOUSE.");
     return { pontos, raridade, total, combinacao: "FULL HOUSE" };
+
   } else if (flush()) {
     const pontos = calculaPontos();
     const raridade = 5;
     const total = pontos * raridade;
     console.log("FLUSH.");
     return { pontos, raridade, total, combinacao: "FLUSH" };
+
+  } else if (quadra()) {
+    const pontos = calculaPontos();
+    const raridade = 4;
+    const total = pontos * raridade;
+    console.log("QUADRA.");
+    return { pontos, raridade, total, combinacao: "QUADRA" };
+
   } else if (trinca()) {
     const pontos = calculaPontos();
     const raridade = 3;
     const total = pontos * raridade;
     console.log("TRINCA.");
     return { pontos, raridade, total, combinacao: "TRINCA" };
+
   } else if (duplas()) {
     const pontos = calculaPontos();
     const raridade = 2;
     const total = pontos * raridade;
     console.log("DOIS PARES.");
     return { pontos, raridade, total, combinacao: "DOIS PARES" };
+    
   } else {
     let maior = maiorCarta();
     console.log("MAIOR CARTA.");
@@ -168,7 +173,6 @@ function duplas(): boolean {
   return paresEncontrados.length === 2;
 }
 
-//função para retornar a maior carta
 function maiorCarta(): Cartas {
   let maiorC = emJogo[0];
   for (let i = 1; i < emJogo.length; i++) {
