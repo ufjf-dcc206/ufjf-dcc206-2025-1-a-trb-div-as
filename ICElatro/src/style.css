@@ -1,46 +1,46 @@
 body {
-  font-family: "Pixelify Sans", sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   margin: 0;
+  font-family: "Pixelify Sans", sans-serif;
   background-color: #edecf7;
-}
-
-#titulo {
-  font-size: 85px;
-  font-weight: 700;
-  color: #350e53;
-  text-transform: uppercase;
-  letter-spacing: -2px;
-  margin-bottom: 40px;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
-  transition: all 0.2s;
 }
 
 button {
   font-family: "Pixelify Sans", sans-serif;
 }
 
+#titulo {
+  margin-bottom: 40px;
+  color: #350e53;
+  font-size: 85px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -2px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s;
+}
+
 #botoes {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 10px;
   gap: 5px;
   padding: 10px 20px;
-  margin: 10px;
 }
 
 #bJogar {
   padding: 8px 20px;
+  color: #350e53;
   background-color: #bdb2f7;
   border: 1px solid #a295e4;
   border-radius: 8px;
   font-size: 16px;
   font-weight: bold;
-  color: #350e53;
   transition: all 0.2s;
 }
 
@@ -65,6 +65,104 @@ button {
   background-color: #c5bbfa;
   transform: scale(1.1);
   cursor: pointer;
+}
+
+#telaJogo {
+  display: none;
+  text-align: center;
+  font-size: 50px;
+  padding: 20px;
+  width: 90%;
+  max-width: 800px;
+  margin-top: auto;
+  margin-bottom: 45px;
+}
+
+#voltarTI {
+  display: flex;
+  font-size: 15px;
+  position: absolute;
+  top: 59px;
+  left: 10%;
+  transform: translateX(-50%);
+  font-weight: bold;
+  color: #350e53;
+  background-color: #edecf7;
+  border: #edecf7;
+  transition: all 0.2s;
+}
+
+#voltarTI:hover {
+  color: #421465;
+  cursor: pointer;
+  font-size: 15.7px;
+}
+
+#cartasNaMao {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+#botoesJogo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+  margin-bottom: -15px;
+}
+
+#bJogarCartas {
+  padding: 8px 16px;
+  background-color: #3ac08a;
+  border: 1px solid #28a171;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+  transition: all 0.2s;
+}
+
+#bJogarCartas:hover {
+  background-color: #4ad8a0;
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+#bDescartarCartas {
+  padding: 8px 16px;
+  background-color: #de4468;
+  border: 1px solid #c93a5b;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+  transition: all 0.2s;
+}
+
+#bDescartarCartas:hover {
+  background-color: #f25e81;
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+#statusJD {
+  display: flex;
+  gap: 20px;
+  font-size: 20px;
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px 20px;
+  background-color: #bdb2f7;
+  border: 1px solid #a295e4;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #350e53;
 }
 
 .modal {
@@ -165,103 +263,3 @@ button {
   transform: scale(1.1);
   cursor: pointer;
 }
-
-#telaJogo {
-  display: none;
-  text-align: center;
-  font-size: 50px;
-  padding: 20px;
-  width: 90%;
-  max-width: 800px;
-  margin-top: auto;
-  margin-bottom: 45px;
-}
-
-#voltarTI {
-  display: flex;
-  font-size: 15px;
-  position: absolute;
-  top: 59px;
-  left: 10%;
-  transform: translateX(-50%);
-  font-weight: bold;
-  color: #350e53;
-  background-color: #edecf7;
-  border: #edecf7;
-  transition: all 0.2s;
-}
-
-#voltarTI:hover {
-  color: #421465;
-  cursor: pointer;
-  font-size: 15.7px;
-}
-
-#statusJD {
-  display: flex;
-  gap: 20px;
-  font-size: 20px;
-  position: absolute;
-  top: 50px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 8px 20px;
-  background-color: #bdb2f7;
-  border: 1px solid #a295e4;
-  border-radius: 10px;
-  font-size: 20px;
-  font-weight: bold;
-  color: #350e53;
-}
-
-#cartasNaMao {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
-}
-
-#botoesJogo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
-  margin-bottom: -15px;
-}
-
-#bJogarCartas {
-  padding: 8px 16px;
-  background-color: #3ac08a;
-  border: 1px solid #28a171;
-  border-radius: 8px;
-  font-size: 18px;
-  font-weight: bold;
-  color: #ffffff;
-  transition: all 0.2s;
-}
-
-#bJogarCartas:hover {
-  background-color: #4ad8a0;
-  transform: scale(1.1);
-  cursor: pointer;
-}
-
-#bDescartarCartas {
-  padding: 8px 16px;
-  background-color: #de4468;
-  border: 1px solid #c93a5b;
-  border-radius: 8px;
-  font-size: 18px;
-  font-weight: bold;
-  color: #ffffff;
-  transition: all 0.2s;
-}
-
-#bDescartarCartas:hover {
-  background-color: #f25e81;
-  transform: scale(1.1);
-  cursor: pointer;
-}
-
-
