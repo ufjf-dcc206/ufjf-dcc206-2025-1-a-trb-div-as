@@ -1,6 +1,7 @@
 import "./style.css";
 import { mao, maoInicial, jogar, descartar } from "./jogoFuncionamento";
-import { Status } from "./status";
+import { Status } from "./componentPontuação";
+import { componentCarta } from "./componentCarta";
 
 //registra o componente
 Status.define();
@@ -67,69 +68,48 @@ function iniciarJogo(telaInicial: HTMLDivElement, telaJogo: HTMLDivElement) {
   statusPontuacao.atualizaStatus(pontosNecessarios, pontuacaoTotal, 0, 0); //inicializa a pontuação inicial do jogo
 }
 
-let indices: number[] = []; //índices das cartas selecionadas
-
 //função para renderizar a mão na tela e selecionar cartas
+
 function renderizarMão() {
   //"cartasNaMao" = a mão completa
   const cartasNaMao = document.getElementById("cartasNaMao") as HTMLDivElement;
 
   //limpa a mão
-  cartasNaMao.innerHTML = "";
+  cartasNaMao.innerHTML = ""; 
 
   mao.forEach((carta, indice) => {
-    const cartaUnica = document.createElement("div"); //"cartaUnica" = carta individual
-    cartaUnica.classList.add("carta");
+    const cartaElemento = document.createElement("carta-jogo") as componentCarta; //cria o elemento
+    cartaElemento.dataset.index = indice.toString();
 
-    //nome da carta
-    const nomeCarta = document.createElement("span");
-    nomeCarta.classList.add("nomeCarta");
-    nomeCarta.textContent = String(carta.nome);
+    cartaElemento.carta = carta;
 
-    //símbolo do naipe da carta
-    const iconeNaipe = document.createElement("span");
-    iconeNaipe.classList.add("iconeNaipe");
-    let simboloNaipe = "";
-    switch (carta.naipe) {
-      case "copas":
-        simboloNaipe = "♥";
-        cartaUnica.classList.add("naipeVermelho");
-        break;
-      case "ouros":
-        simboloNaipe = "♦";
-        cartaUnica.classList.add("naipeVermelho");
-        break;
-      case "espadas":
-        simboloNaipe = "♠";
-        cartaUnica.classList.add("naipePreto");
-        break;
-      case "paus":
-        simboloNaipe = "♣";
-        cartaUnica.classList.add("naipePreto");
-        break;
-    }
-    iconeNaipe.textContent = simboloNaipe;
+  //seleção das cartas
+    cartaElemento.addEventListener("click", () => {
+        const selecionadas = document.querySelectorAll("carta-jogo.selecionada").length;
 
-    //adiciona "nomeCarta" e "iconeNaipe" na "cartaUnica"
-    cartaUnica.appendChild(nomeCarta);
-    cartaUnica.appendChild(iconeNaipe);
-    cartasNaMao.appendChild(cartaUnica); //adiciona "cartaUnica" no "cartasNaMao"
-    //MUDEI DE LUGAR (?)
-
-    //faz seleção das cartas e preenche o vetor "indices"
-    cartaUnica.addEventListener("click", () => {
-      if (cartaUnica.classList.contains("selecionada")) {
-        cartaUnica.classList.remove("selecionada");
-        indices = indices.filter((i) => i !== indice);
-      } else {
-        const selecionadas = document.querySelectorAll(".carta.selecionada");
-        if (selecionadas.length < 5) {
-          cartaUnica.classList.add("selecionada");
-          indices.push(indice);
+        if (cartaElemento.selecionada) {
+            cartaElemento.estadoSelecao();
+        } 
+        else if (selecionadas < 5) {
+            cartaElemento.estadoSelecao();
         }
-      }
     });
+
+    cartasNaMao.appendChild(cartaElemento);
   });
+}
+
+//preenche o vetor "indices"
+function indicesSelecionados(): number[] {
+    const indices: number[] = [];
+    const maoCompleta = document.querySelectorAll('#cartasNaMao carta-jogo');
+
+    maoCompleta.forEach((cartaElemento, index) => {
+        if (cartaElemento.classList.contains('selecionada')) {
+            indices.push(index);
+        }
+    });
+    return indices;
 }
 
 function verificaJogo(): void {
@@ -166,6 +146,7 @@ botaoFecharTutorial?.addEventListener("click", () => {
 
 //ações dos botões "Jogar", "Descartar" e voltar para tela inicial (dentro do jogo)
 botaoJogarCartas.addEventListener("click", () => {
+  const indices = indicesSelecionados();
   if (indices.length === 0) {
     console.log("Nenhuma carta foi selecionada");
     return;
@@ -204,13 +185,13 @@ botaoJogarCartas.addEventListener("click", () => {
     resultadoDaJogada.raridade
   );
 
-  indices = [];
   verificaJogadas--;
   verificaJogo();
   renderizarMão();
 });
 
 botaoDescartarCartas.addEventListener("click", () => {
+  const indices = indicesSelecionados();
   if (verificaDescartes === 0) return; //verifica se o jogador já atingiu o limite de descartes
 
   if (indices.length === 0) {
@@ -219,7 +200,6 @@ botaoDescartarCartas.addEventListener("click", () => {
   }
 
   descartar(indices);
-  indices = [];
   verificaDescartes--;
   verificaJogo();
   renderizarMão();
