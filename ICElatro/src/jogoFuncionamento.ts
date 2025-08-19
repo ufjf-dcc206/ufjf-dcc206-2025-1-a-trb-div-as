@@ -28,7 +28,7 @@ function embaralharBaralho(baralho: Cartas[]): void {
   for (let i = baralhoJogo.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [baralhoJogo[i], baralhoJogo[j]] = [baralhoJogo[j], baralhoJogo[i]];
-  } //TIREI O RETURN (?)
+  }
 }
 
 export let mao: Cartas[] = []; //criação da mão
@@ -43,18 +43,15 @@ export function maoInicial(): void {
     let carta = baralhoJogo.pop();
     if (carta) mao.push(carta); //tira a última carta do baralho e coloca na mão
   }
-} //criar mão com web component
+}
 
 export function jogar(indices: number[]): ResultadoCombinacao{
-  console.log(indices);
-
   indices.sort((a, b) => b - a); //ordena os índices (decrescente)
   for(let i = 0; i<indices.length; i++){
     let j = indices[i];
     let carta = mao.splice(j, 1)[0];
     if (carta) emJogo.push(carta);
   }
-  console.log(emJogo);
 
   const resultado = verificaCombinacoes();
 
@@ -72,15 +69,12 @@ function descartaCartasJogadas(): void {
 }
 
 export function descartar(indices: number[]): void {
-  console.log(indices);
-
   indices.sort((a, b) => b - a);
   for(let i = 0; i<indices.length; i++){
     let j = indices[i];
     let carta = mao.splice(j, 1)[0];
     if (carta) descartadas.push(carta);
   }
-  console.log(mao, descartadas);
   atualizaMaoJogo();
 }
 
@@ -94,5 +88,4 @@ function atualizaMaoJogo(): void {
     let carta = baralhoJogo.pop();
     if (carta) mao.push(carta);
   }
-  console.log("Mão: ", mao);
 }

@@ -27,7 +27,6 @@ const voltarTelaInicial = document.getElementById(
 const statusPontuacao = document.querySelector("status-pontuacao") as Status; // pega a referencia
 const perdeu = document.getElementById("modalPerdeu") as HTMLButtonElement;
 const botaoFecharP = document.querySelector(".fecharP");
-
 const ganhou = document.getElementById("modalGanhou") as HTMLButtonElement;
 const botaoFecharG = document.querySelector(".fecharG");
 
@@ -69,7 +68,6 @@ function iniciarJogo(telaInicial: HTMLDivElement, telaJogo: HTMLDivElement) {
 }
 
 //função para renderizar a mão na tela e selecionar cartas
-
 function renderizarMão() {
   //"cartasNaMao" = a mão completa
   const cartasNaMao = document.getElementById("cartasNaMao") as HTMLDivElement;
@@ -144,13 +142,11 @@ botaoFecharTutorial?.addEventListener("click", () => {
   if (tutorial) tutorial.style.display = "none";
 });
 
-//ações dos botões "Jogar", "Descartar" e voltar para tela inicial (dentro do jogo)
+//ações dos botões "Jogar", "Descartar" (dentro do jogo)
 botaoJogarCartas.addEventListener("click", () => {
   const indices = indicesSelecionados();
-  if (indices.length === 0) {
-    console.log("Nenhuma carta foi selecionada");
-    return;
-  } //verifica se tem pelo menos uma carta selecionada
+  if (indices.length === 0) return;
+  //verifica se tem pelo menos uma carta selecionada
 
   //chama a função jogar e armazena o resultado
   const resultadoDaJogada = jogar(indices);
@@ -180,7 +176,7 @@ botaoJogarCartas.addEventListener("click", () => {
   //atualiza o painel de pontuação
   statusPontuacao.atualizaStatus(
     pontosNecessarios,
-    pontuacaoTotal, // Usa a variável que está somando a pontuação
+    pontuacaoTotal, //usa a variável que está somando a pontuação
     resultadoDaJogada.pontos,
     resultadoDaJogada.raridade
   );
@@ -194,10 +190,7 @@ botaoDescartarCartas.addEventListener("click", () => {
   const indices = indicesSelecionados();
   if (verificaDescartes === 0) return; //verifica se o jogador já atingiu o limite de descartes
 
-  if (indices.length === 0) {
-    console.log("Nenhuma carta foi selecionada");
-    return;
-  }
+  if (indices.length === 0) return;
 
   descartar(indices);
   verificaDescartes--;
@@ -205,6 +198,7 @@ botaoDescartarCartas.addEventListener("click", () => {
   renderizarMão();
 });
 
+//ação de voltar a tela inicial
 voltarTelaInicial.addEventListener("click", () => {
   telaJogo.style.display = "none";
   telaInicial.style.display = "block";

@@ -179,18 +179,23 @@ button {
 }
 
 .modal-conteudo {
-  background-color: #fefefe;
   margin: 15% auto;
   padding: 20px;
-  border: 1px solid #888;
   width: 80%;
   max-width: 500px;
+  max-height: 70vh; 
+  overflow-y: auto;
   border-radius: 10px;
   position: relative;
+  color: #350e53;
+  background-color: #bdb2f7;
+  border: 1px solid #a295e4;
+  border-radius: 8px;
+  font-weight: bold;
 }
 
 .fechar {
-  color: #aaa;
+  color: #ffffff;
   position: absolute;
   top: 5px;
   right: 15px;
